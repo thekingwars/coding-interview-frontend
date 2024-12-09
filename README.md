@@ -20,7 +20,7 @@ Acá tienes todos los assets que necesitas para llevar a cabo una pequeña prueb
 Del response, simplemente obtener el `data.byPrice.fiatToCryptoExchangeRate` y multiplicarlo/dividirlo para mostrar toda la data necesaria.
 
 ### Que puedes hacer: 
-- ✅ Lo que tu quieras :)
+- ✅ Preferiblemente, usa Flutter :)
 - ✅ Cuantas mejoras de UX como veas necesarias/quieras
 - ✅ No todo tiene que estar funcionando a la perfección, lo que más vamos a tomar en cuenta es el parecido con el diseño y la calidad del código.
 - ✅ Desarrolla la app con la arquitecura de una app que va a escalar, no hagas un código que no puedas mantener en el futuro.
