@@ -91,9 +91,7 @@ class _HomeScreenState extends State<HomeScreen> with ModalMixin {
                       children: [
                         const SizedBox(width: 16),
                         Text(
-                          orderbookController.isCryptoToFiat
-                              ? orderbookController.selectedCryptoCurrency
-                              : orderbookController.selectedFiatCurrency,
+                          orderbookController.getIfIsCryptoToFiat,
                           style: AppTheme.inputText,
                         ),
                       ],
@@ -117,9 +115,7 @@ class _HomeScreenState extends State<HomeScreen> with ModalMixin {
                     fiatCurrencyId: orderbookController.selectedFiatCurrency,
                     amount: orderbookController.amount,
                     type: orderbookController.type,
-                    amountCurrencyId: orderbookController.isCryptoToFiat
-                        ? orderbookController.selectedCryptoCurrency
-                        : orderbookController.selectedFiatCurrency,
+                    amountCurrencyId: orderbookController.getIfIsCryptoToFiat,
                   )
                       .catchError((error) {
                     showErrorModal(

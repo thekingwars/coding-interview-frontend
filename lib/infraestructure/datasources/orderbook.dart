@@ -15,8 +15,6 @@ class OrderbookDatasourceImpl implements OrderbookDatasource {
     required String type,
     required String amountCurrencyId,
   }) async {
-    print('prueba');
-
     final uri = Uri.https(
       ElDoradoConstants.apiUrl,
       '/stage/orderbook/public/recommendations',
@@ -30,8 +28,6 @@ class OrderbookDatasourceImpl implements OrderbookDatasource {
     );
 
     final response = await http.get(uri);
-
-    print(response.body);
 
     if (response.statusCode != 200) {
       throw Exception('Failed to load orderbook');

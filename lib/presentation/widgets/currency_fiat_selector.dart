@@ -43,9 +43,7 @@ class CurrencyFiatSelector extends StatelessWidget with BottomSheetMixin {
                         items: orderbookController.isCryptoToFiat
                             ? orderbookController.currencies
                             : orderbookController.fiatCurrencies,
-                        selectedItem: orderbookController.isCryptoToFiat
-                            ? orderbookController.selectedCryptoCurrency
-                            : orderbookController.selectedFiatCurrency,
+                        selectedItem: orderbookController.getIfIsCryptoToFiat,
                       );
 
                       if (result != null) {
@@ -86,9 +84,7 @@ class CurrencyFiatSelector extends StatelessWidget with BottomSheetMixin {
                         items: orderbookController.isCryptoToFiat
                             ? orderbookController.fiatCurrencies
                             : orderbookController.currencies,
-                        selectedItem: orderbookController.isCryptoToFiat
-                            ? orderbookController.selectedFiatCurrency
-                            : orderbookController.selectedCryptoCurrency,
+                        selectedItem: orderbookController.getIfIsFiatToCrypto,
                       );
 
                       if (result != null) {
@@ -105,9 +101,7 @@ class CurrencyFiatSelector extends StatelessWidget with BottomSheetMixin {
                         ),
                         const SizedBox(width: 8),
                         Text(
-                          orderbookController.isCryptoToFiat
-                              ? orderbookController.selectedFiatCurrency
-                              : orderbookController.selectedCryptoCurrency,
+                          orderbookController.getIfIsFiatToCrypto,
                           style: AppTheme.labelSmall,
                         ),
                         const Icon(

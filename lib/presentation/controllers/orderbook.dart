@@ -93,4 +93,12 @@ class OrderbookController extends ChangeNotifier {
     _orderbook = null;
     notifyListeners();
   }
+
+  get getIfIsCryptoToFiat {
+    return isCryptoToFiat ? selectedCryptoCurrency : selectedFiatCurrency;
+  }
+
+  get getIfIsFiatToCrypto {
+    return isCryptoToFiat ? selectedFiatCurrency : selectedCryptoCurrency;
+  }
 }
