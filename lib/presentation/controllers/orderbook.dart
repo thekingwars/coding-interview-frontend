@@ -91,6 +91,7 @@ class OrderbookController extends ChangeNotifier {
 
   void reset() {
     _orderbook = null;
+
     notifyListeners();
   }
 
@@ -100,5 +101,27 @@ class OrderbookController extends ChangeNotifier {
 
   get getIfIsFiatToCrypto {
     return isCryptoToFiat ? selectedFiatCurrency : selectedCryptoCurrency;
+  }
+
+  void swapCurrencies() {
+    isCryptoToFiat = !isCryptoToFiat;
+
+    type = isCryptoToFiat ? '0' : '1';
+
+    notifyListeners();
+
+    reset();
+  }
+
+  void onCurrencySelected(CurrencyFiat currency) {
+    if (!isCryptoToFiat) {
+      selectedCryptoCurrency = currency.code;
+      notifyListeners();
+    } else {
+      selectedFiatCurrency = currency.code;
+      notifyListeners();
+    }
+
+    reset();
   }
 }

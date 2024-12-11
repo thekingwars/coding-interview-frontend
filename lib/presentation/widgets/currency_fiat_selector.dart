@@ -43,7 +43,9 @@ class CurrencyFiatSelector extends StatelessWidget with BottomSheetMixin {
                         items: orderbookController.isCryptoToFiat
                             ? orderbookController.currencies
                             : orderbookController.fiatCurrencies,
-                        selectedItem: orderbookController.getIfIsCryptoToFiat,
+                        selectedItem: orderbookController.isCryptoToFiat
+                            ? orderbookController.selectedCryptoCurrency
+                            : orderbookController.selectedFiatCurrency,
                       );
 
                       if (result != null) {

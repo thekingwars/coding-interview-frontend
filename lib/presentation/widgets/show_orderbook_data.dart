@@ -1,6 +1,7 @@
 import 'package:coding_interview_frontend/config/theme/theme.dart';
 import 'package:coding_interview_frontend/presentation/controllers/orderbook.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ShowOrderData extends StatelessWidget {
   const ShowOrderData({
@@ -12,9 +13,8 @@ class ShowOrderData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
-      listenable: orderbookController,
-      builder: (context, _) {
+    return Consumer<OrderbookController>(
+      builder: (context, orderbookController, child) {
         final orderbook = orderbookController.orderbook;
 
         if (orderbook == null) return const SizedBox.shrink();

@@ -1,11 +1,11 @@
 import 'package:coding_interview_frontend/config/mixins/modal.dart';
 import 'package:coding_interview_frontend/config/theme/theme.dart';
-import 'package:coding_interview_frontend/infraestructure/services/geit.dart';
 import 'package:coding_interview_frontend/presentation/controllers/orderbook.dart';
 import 'package:coding_interview_frontend/presentation/widgets/currency_fiat_selector.dart';
 import 'package:coding_interview_frontend/presentation/widgets/show_orderbook_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,17 +15,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> with ModalMixin {
-  late OrderbookController orderbookController;
-
-  @override
-  void initState() {
-    super.initState();
-
-    orderbookController = getIt<OrderbookController>();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final orderbookController = context.read<OrderbookController>();
+
     return Scaffold(
       backgroundColor: AppTheme.background,
       body: Center(
@@ -36,27 +29,13 @@ class _HomeScreenState extends State<HomeScreen> with ModalMixin {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              CurrencyFiatSelector(
-                orderbookController: orderbookController,
-                onSwapCurrencies: () {
-                  setState(() {
-                    orderbookController.isCryptoToFiat =
-                        !orderbookController.isCryptoToFiat;
-
-                    orderbookController.type =
-                        orderbookController.isCryptoToFiat ? '0' : '1';
-
-                    orderbookController.reset();
-                  });
-                },
-                onCurrencySelected: (result) {
-                  setState(() {
-                    if (orderbookController.isCryptoToFiat) {
-                      orderbookController.selectedCryptoCurrency = result.code;
-                    } else {
-                      orderbookController.selectedFiatCurrency = result.code;
-                    }
-                  });
+              Consumer<OrderbookController>(
+                builder: (context, orderbookController, child) {
+                  return CurrencyFiatSelector(
+                    orderbookController: orderbookController,
+                    onSwapCurrencies: orderbookController.swapCurrencies,
+                    onCurrencySelected: orderbookController.onCurrencySelected,
+                  );
                 },
               ),
               const SizedBox(height: 16),
